@@ -50,11 +50,19 @@
         android:layout_height="wrap_content" >
 
         <Button
+            android:id="@+id/createClean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clean"
+            android:text="@string/clean" />
+
+        <Button
             android:id="@+id/createSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/save"
-            android:onClick="save" />
+            android:onClick="save"
+            android:text="@string/save" />
+
     </TableRow>
 
 </TableLayout>

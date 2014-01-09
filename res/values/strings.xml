@@ -13,9 +13,18 @@
     
     <string name="update">Update</string>
     <string name="save">Save</string>
+    <string name="clean">Clean</string>
     
     <string name="saved">Saved</string>
     <string name="updated">Updated</string>
+    <string name="removed">Removed</string>
+    <string name="cleaned">Cleaned</string>
+    <string name="allremoved">All removed</string>
     
     <string name="invalid">Invalid key/value</string>
+    
+    <string name="create">New</string>
+    <string name="remove">Remove</string>
+    <string name="removeAll">Remove All</string>
+    
 </resources>

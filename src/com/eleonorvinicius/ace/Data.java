@@ -25,20 +25,20 @@ public class Data {
 		}
 		return data;
 	}
-	
-	public String[] getDataAsArray(){
+
+	public String[] getDataAsArray() {
 		String[] dataAsArray = new String[this.configs.size()];
-		
+
 		int i = 0;
-		for (Long l : this.configs.keySet()){
+		for (Long l : this.configs.keySet()) {
 			Configuration configuration = this.configs.get(l);
 			dataAsArray[i] = configuration.getContent();
-			i+=1;
+			i += 1;
 		}
-		
+
 		return dataAsArray;
 	}
-	
+
 	public void add(Configuration configuration) {
 		this.configs.put(configuration.getId(), configuration);
 	}
@@ -46,7 +46,7 @@ public class Data {
 	public void remove(Long id) {
 		this.configs.remove(id);
 	}
-	
+
 	public void removeAll(List<Long> ids) {
 		for (Long l : ids) {
 			this.configs.remove(l);

@@ -1,14 +1,14 @@
 package com.eleonorvinicius.ace;
 
-import com.eleonorvinicius.ace.R;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ListActivity extends android.app.ListActivity {
 
@@ -21,15 +21,40 @@ public class ListActivity extends android.app.ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Intent intent = new Intent(v.getContext(), EditActivity.class);
-		intent.putExtra("selectedConfigurationId", position);
-		startActivityForResult(intent, Activity.RESULT_OK);
+		startActivity(intent);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.edit, menu);
+		getMenuInflater().inflate(R.menu.list_items, menu);
 		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		case R.id.create:
+			Intent intent = new Intent(this, CreateActivity.class);
+			startActivity(intent);
+			return true;
+		case R.id.remove:
+			/*
+			 * TODO implementar o remover
+			 */
+			Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
+			return true;
+		case R.id.removeAll:
+			Data.getInstance().clear();
+			Toast.makeText(this, getText(R.string.allremoved), Toast.LENGTH_LONG).show();
+			/*
+			 * FIXME atualizar a lista
+			 */
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 }
