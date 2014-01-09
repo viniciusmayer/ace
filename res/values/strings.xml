@@ -27,4 +27,6 @@
     <string name="remove">Remove</string>
     <string name="removeAll">Remove All</string>
     
+    <string name="keyAlreadyExists">Key already exists</string>
+    
 </resources>

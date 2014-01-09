@@ -31,8 +31,12 @@ public class CreateActivity extends Activity {
 		}
 
 		Configuration configuration = new Configuration(key, value);
-		Data.getInstance().add(configuration);
-		Toast.makeText(this, R.string.saved, Toast.LENGTH_LONG).show();
+		try {
+			Data.getInstance().add(configuration);
+			Toast.makeText(this, R.string.saved, Toast.LENGTH_LONG).show();
+		} catch (ACEException e) {
+			Toast.makeText(this, e.getMessageKey(), Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override

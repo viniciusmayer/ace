@@ -29,8 +29,12 @@ public class EditActivity extends Activity {
 		 * objeto (para atualizar e nao criar nova configuracao)
 		 */
 		Configuration configuration = new Configuration(key, value);
-		Data.getInstance().add(configuration);
-		Toast.makeText(this, R.string.updated, Toast.LENGTH_LONG).show();
+		try {
+			Data.getInstance().add(configuration);
+			Toast.makeText(this, R.string.updated, Toast.LENGTH_LONG).show();
+		} catch (ACEException e) {
+			Toast.makeText(this, e.getMessageKey(), Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
@@ -66,5 +70,4 @@ public class EditActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
 }
