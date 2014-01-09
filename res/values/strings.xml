@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CRUD Example</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="title_activity_edit">Edit configuration</string>
+    <string name="title_activity_list">Configurations\'s list</string>
+    <string name="title_activity_create">Create configuration</string>
+    
+    <string name="keyLabel">Key</string>
+    <string name="valueLabel">Value</string>
+    
+    <string name="update">Update</string>
+    <string name="save">Save</string>
+    
+    <string name="saved">Saved</string>
+    <string name="updated">Updated</string>
+    
+    <string name="invalid">Invalid key/value</string>
+</resources>
