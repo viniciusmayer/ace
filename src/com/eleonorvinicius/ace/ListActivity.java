@@ -34,6 +34,7 @@ public class ListActivity extends android.app.ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.create:

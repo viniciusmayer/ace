@@ -15,7 +15,7 @@ public class Data {
 
 		for (long i = 0; i < 10; i += 1) {
 			Configuration configuration = new Configuration("key " + i, "value " + i * 2);
-			this.configs.put(i, configuration);
+			this.configs.put(configuration.getId(), configuration);
 		}
 	}
 
