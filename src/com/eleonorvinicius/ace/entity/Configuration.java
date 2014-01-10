@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace;
+package com.eleonorvinicius.ace.entity;
 
 import java.util.Random;
 
@@ -42,5 +42,5 @@ public class Configuration {
 
 	public void setValue(String value) {
 		this.value = value;
-	}	
+	}
 }

@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.eleonorvinicius.ace.ListActivity"
+            android:name="com.eleonorvinicius.ace.activity.ListConfigurationActivity"
             android:label="@string/title_activity_list" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,9 +33,9 @@
         </activity
         -->
         <activity
-            android:name="com.eleonorvinicius.ace.EditActivity"
+            android:name="com.eleonorvinicius.ace.activity.EditConfigurationActivity"
             android:label="@string/title_activity_edit"
-            android:parentActivityName="com.eleonorvinicius.ace.ListActivity" >
+            android:parentActivityName="com.eleonorvinicius.ace.activity.ListConfigurationActivity" >
             <intent-filter>
                 <action android:name="EditActivity" />
             </intent-filter>
@@ -45,9 +45,9 @@
                 android:value="com.eleonorvinicius.ace.ListActivity" />
         </activity>
         <activity
-            android:name="com.eleonorvinicius.ace.CreateActivity"
+            android:name="com.eleonorvinicius.ace.activity.CreateConfigurationActivity"
             android:label="@string/title_activity_create"
-            android:parentActivityName="com.eleonorvinicius.ace.ListActivity" >
+            android:parentActivityName="com.eleonorvinicius.ace.activity.ListConfigurationActivity" >
             <intent-filter>
                 <action android:name="CreateActivity" />
             </intent-filter>

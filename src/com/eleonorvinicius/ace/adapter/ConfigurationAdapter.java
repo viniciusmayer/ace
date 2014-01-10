@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace;
+package com.eleonorvinicius.ace.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.eleonorvinicius.ace.R;
+import com.eleonorvinicius.ace.data.Data;
+import com.eleonorvinicius.ace.entity.Configuration;
 
 public class ConfigurationAdapter extends BaseAdapter {
 

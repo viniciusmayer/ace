@@ -1,9 +1,13 @@
-package com.eleonorvinicius.ace;
+package com.eleonorvinicius.ace.data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.eleonorvinicius.ace.R;
+import com.eleonorvinicius.ace.entity.Configuration;
+import com.eleonorvinicius.ace.exception.ACEException;
 
 public class Data {
 
@@ -26,12 +30,12 @@ public class Data {
 		}
 		return data;
 	}
-	
+
 	public Map<Long, Configuration> getConfigs() {
 		return configs;
 	}
 
-	public List<Configuration> getConfigsAsList(){
+	public List<Configuration> getConfigsAsList() {
 		List<Configuration> dataAsList = new ArrayList<Configuration>();
 		for (Long l : this.configs.keySet()) {
 			dataAsList.add(this.configs.get(l));
@@ -39,26 +43,26 @@ public class Data {
 		return dataAsList;
 	}
 
-	public void update(Configuration configuration){
+	public void update(Configuration configuration) {
 		this.configs.put(configuration.getId(), configuration);
 	}
-	
+
 	public void add(Configuration configuration) throws ACEException {
 		for (Long l : this.configs.keySet()) {
 			Configuration c = this.configs.get(l);
-			if (c.getKey().equals(configuration.getKey())){
+			if (c.getKey().equals(configuration.getKey())) {
 				throw new ACEException(R.string.keyAlreadyExists, "key already exists");
 			}
 		}
 		this.configs.put(configuration.getId(), configuration);
 	}
 
-	public void removeAll(List<Long> ids){
+	public void removeAll(List<Long> ids) {
 		for (Long l : ids) {
 			this.configs.remove(l);
 		}
 	}
-	
+
 	public void removeAll(Long... ids) {
 		for (Long l : ids) {
 			this.configs.remove(l);

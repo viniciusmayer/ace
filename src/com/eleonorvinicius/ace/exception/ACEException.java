@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace;
+package com.eleonorvinicius.ace.exception;
 
 public class ACEException extends Exception {
 

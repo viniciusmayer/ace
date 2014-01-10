@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace;
+package com.eleonorvinicius.ace.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CreateActivity extends Activity {
+import com.eleonorvinicius.ace.R;
+import com.eleonorvinicius.ace.data.Data;
+import com.eleonorvinicius.ace.entity.Configuration;
+import com.eleonorvinicius.ace.exception.ACEException;
+
+public class CreateConfigurationActivity extends Activity {
 
 	public void clean(View view) {
 		EditText keyEditText = (EditText) findViewById(R.id.createKeyInput);
@@ -38,8 +43,8 @@ public class CreateActivity extends Activity {
 		} catch (ACEException e) {
 			Toast.makeText(this, e.getMessageKey(), Toast.LENGTH_LONG).show();
 		}
-		
-		Intent intent = new Intent(this, EditActivity.class);
+
+		Intent intent = new Intent(this, EditConfigurationActivity.class);
 		intent.putExtra("selectedConfigurationId", configuration.getId());
 		startActivity(intent);
 	}

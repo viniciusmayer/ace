@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace;
+package com.eleonorvinicius.ace.activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,11 @@ import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.Toast;
 
-public class ListActivity extends android.app.ListActivity {
+import com.eleonorvinicius.ace.R;
+import com.eleonorvinicius.ace.adapter.ConfigurationAdapter;
+import com.eleonorvinicius.ace.data.Data;
+
+public class ListConfigurationActivity extends android.app.ListActivity {
 
 	private List<Long> selectedConfigurationsIds;
 
@@ -28,7 +32,7 @@ public class ListActivity extends android.app.ListActivity {
 	}
 
 	public void edit(View view) {
-		Intent intent = new Intent(this, EditActivity.class);
+		Intent intent = new Intent(this, EditConfigurationActivity.class);
 		intent.putExtra("selectedConfigurationId", (Long) view.getTag());
 		startActivity(intent);
 	}
@@ -54,7 +58,7 @@ public class ListActivity extends android.app.ListActivity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.create:
-			startActivity(new Intent(this, CreateActivity.class));
+			startActivity(new Intent(this, CreateConfigurationActivity.class));
 			return true;
 		case R.id.remove:
 			/*
