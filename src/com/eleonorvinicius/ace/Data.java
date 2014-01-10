@@ -9,14 +9,14 @@ public class Data {
 
 	private static Data data;
 
-	private Map<String, Configuration> configs;
+	private Map<Long, Configuration> configs;
 
 	private Data() {
-		this.configs = new HashMap<String, Configuration>();
+		this.configs = new HashMap<Long, Configuration>();
 
 		for (long i = 0; i < 10; i += 1) {
 			Configuration configuration = new Configuration("key " + i, "value " + i * 2);
-			this.configs.put(configuration.key, configuration);
+			this.configs.put(configuration.id, configuration);
 		}
 	}
 
@@ -27,14 +27,14 @@ public class Data {
 		return data;
 	}
 	
-	public Map<String, Configuration> getConfigs() {
+	public Map<Long, Configuration> getConfigs() {
 		return configs;
 	}
 
 	public List<Configuration> getConfigsAsList(){
 		List<Configuration> dataAsList = new ArrayList<Configuration>();
-		for (String s : this.configs.keySet()) {
-			dataAsList.add(this.configs.get(s));
+		for (Long l : this.configs.keySet()) {
+			dataAsList.add(this.configs.get(l));
 		}
 		return dataAsList;
 	}
@@ -43,8 +43,8 @@ public class Data {
 		String[] dataAsArray = new String[this.configs.size()];
 
 		int i = 0;
-		for (String s : this.configs.keySet()) {
-			Configuration configuration = this.configs.get(s);
+		for (Long l : this.configs.keySet()) {
+			Configuration configuration = this.configs.get(l);
 			dataAsArray[i] = configuration.getContent();
 			i += 1;
 		}
@@ -53,14 +53,14 @@ public class Data {
 	}
 
 	public void update(Configuration configuration){
-		this.configs.put(configuration.key, configuration);
+		this.configs.put(configuration.id, configuration);
 	}
 	
 	public void add(Configuration configuration) throws ACEException {
 		if (this.configs.containsKey(configuration.key)){
 			throw new ACEException(R.string.keyAlreadyExists, "key already exists");
 		}
-		this.configs.put(configuration.key, configuration);
+		this.configs.put(configuration.id, configuration);
 	}
 
 	public void remove(String key) {

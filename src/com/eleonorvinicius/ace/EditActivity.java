@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 public class EditActivity extends Activity {
 
+	private Long selectedConfigurationId;
+	
 	public void update(View view) {
 		EditText keyEditText = (EditText) findViewById(R.id.editKeyInput);
 		EditText valueEditText = (EditText) findViewById(R.id.editValueInput);
@@ -24,11 +26,7 @@ public class EditActivity extends Activity {
 			return;
 		}
 
-		/*
-		 * FIXME incluir o id da configuracao sendo editada ao construir o
-		 * objeto (para atualizar e nao criar nova configuracao)
-		 */
-		Configuration configuration = new Configuration(key, value);
+		Configuration configuration = new Configuration(this.selectedConfigurationId, key, value);
 		try {
 			Data.getInstance().add(configuration);
 			Toast.makeText(this, R.string.updated, Toast.LENGTH_LONG).show();
@@ -36,12 +34,26 @@ public class EditActivity extends Activity {
 			Toast.makeText(this, e.getMessageKey(), Toast.LENGTH_LONG).show();
 		}
 	}
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		this.selectedConfigurationId = getIntent().getLongExtra("selectedConfigurationKey", -1);
+		
+		if (this.selectedConfigurationId == -1){
+			//TODO fazer tratamento
+		}
+
+		Configuration configuration = Data.getInstance().getConfigs().get(this.selectedConfigurationId);
+		
+		EditText keyInput = (EditText)findViewById(R.id.editKeyInput);
+		EditText valueInput = (EditText)findViewById(R.id.editValueInput);
+		
+		keyInput.setText(configuration.key);
+		valueInput.setText(configuration.value);
 	}
 
 	@Override

@@ -18,21 +18,28 @@
             android:label="@string/title_activity_list" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+        <!--
+        activity
             android:name="com.eleonorvinicius.ace.List15Activity"
             android:label="@string/title_activity_list" >
         </activity>
         <activity
             android:name="com.eleonorvinicius.ace.List16Activity"
             android:label="@string/title_activity_list" >
-        </activity>
+        </activity
+        -->
         <activity
             android:name="com.eleonorvinicius.ace.EditActivity"
             android:label="@string/title_activity_edit"
             android:parentActivityName="com.eleonorvinicius.ace.ListActivity" >
+            <intent-filter>
+                <action android:name="EditActivity" />
+            </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eleonorvinicius.ace.ListActivity" />
@@ -41,6 +48,10 @@
             android:name="com.eleonorvinicius.ace.CreateActivity"
             android:label="@string/title_activity_create"
             android:parentActivityName="com.eleonorvinicius.ace.ListActivity" >
+            <intent-filter>
+                <action android:name="CreateActivity" />
+            </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eleonorvinicius.ace.ListActivity" />
