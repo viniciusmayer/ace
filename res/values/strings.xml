@@ -8,8 +8,8 @@
     <string name="title_activity_list">Configurations\'s list</string>
     <string name="title_activity_create">Create configuration</string>
     
-    <string name="keyLabel">Key</string>
-    <string name="valueLabel">Value</string>
+    <string name="key_label">Key</string>
+    <string name="value_label">Value</string>
     
     <string name="update">Update</string>
     <string name="save">Save</string>
@@ -22,16 +22,17 @@
     <string name="removed">Removed</string>
     <string name="cleaned">Cleaned</string>
     <string name="allremoved">All removed</string>
+    <string name="not_yet">Not yet</string>
     
     <string name="invalid_key_value">Invalid key/value</string>
     <string name="invalid_email_password">Invalid email/password</string>
     <string name="invalid_parameter_value">Invalid parameter value</string>
-    <string name="keyAlreadyExists">Key already exists</string>
-    <string name="emailAlreadyExists">Email already exists</string>
+    <string name="key_already_exists">Key already exists</string>
+    <string name="email_already_exists">Email already exists</string>
     
     <string name="create">New</string>
     <string name="remove">Remove</string>
-    <string name="removeAll">Remove All</string>
+    <string name="remove_all">Remove All</string>
     
     
 </resources>

@@ -25,7 +25,7 @@ public class UserData extends Data<User> {
 		for (Long l : this.getObjects().keySet()) {
 			User u = this.getObjects().get(l);
 			if (u.getEmail().equals(entidade.getEmail())) {
-				throw new ACEException(R.string.emailAlreadyExists, "email already exists");
+				throw new ACEException(R.string.email_already_exists, "email already exists");
 			}
 		}
 	}

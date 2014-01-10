@@ -12,7 +12,7 @@
             android:id="@+id/editKeyLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/keyLabel" />
+            android:text="@string/key_label" />
 
         <EditText
             android:id="@+id/editKeyInput"
@@ -34,7 +34,7 @@
             android:id="@+id/editValueLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/valueLabel" />
+            android:text="@string/value_label" />
 
         <EditText
             android:id="@+id/editValueInput"

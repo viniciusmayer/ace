@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:onClick="edit"
         android:orientation="horizontal"
-        android:paddingLeft="5dp" >
+        android:paddingLeft="5dp"
+        android:longClickable="true" >
 
         <TextView
             android:id="@+id/email"

@@ -27,7 +27,7 @@ public class ConfigurationData extends Data<Configuration> {
 		for (Long l : this.getObjects().keySet()) {
 			Configuration c = this.getObjects().get(l);
 			if (c.getKey().equals(entidade.getKey())) {
-				throw new ACEException(R.string.keyAlreadyExists, "key already exists");
+				throw new ACEException(R.string.key_already_exists, "key already exists");
 			}
 		}
 	}
