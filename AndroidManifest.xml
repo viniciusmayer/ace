@@ -5,6 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
+        android:maxSdkVersion="19"
         android:minSdkVersion="14"
         android:targetSdkVersion="16" />
 
@@ -15,16 +16,16 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.eleonorvinicius.ace.activity.ListUserActivity"
-            android:label="@string/title_activity_list" >
+            android:label="@string/list_user" >
+        </activity>
+        <activity
+            android:name="com.eleonorvinicius.ace.activity.ListConfigurationActivity"
+            android:label="@string/list_configuration" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.eleonorvinicius.ace.activity.ListConfigurationActivity"
-            android:label="@string/title_activity_list" >
         </activity>
         <!--
         activity
@@ -38,7 +39,7 @@
         -->
         <activity
             android:name="com.eleonorvinicius.ace.activity.EditConfigurationActivity"
-            android:label="@string/title_activity_edit"
+            android:label="@string/edit_configuration"
             android:parentActivityName="com.eleonorvinicius.ace.activity.ListConfigurationActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -46,7 +47,7 @@
         </activity>
         <activity
             android:name="com.eleonorvinicius.ace.activity.CreateConfigurationActivity"
-            android:label="@string/title_activity_create"
+            android:label="@string/create_configuration"
             android:parentActivityName="com.eleonorvinicius.ace.activity.ListConfigurationActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
