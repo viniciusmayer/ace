@@ -18,10 +18,10 @@ public class EditActivity extends Activity {
 		EditText keyEditText = (EditText) findViewById(R.id.editKeyInput);
 		EditText valueEditText = (EditText) findViewById(R.id.editValueInput);
 
-		String key = keyEditText.getText().toString();
-		String value = valueEditText.getText().toString();
+		String key = keyEditText.getText().toString().trim();
+		String value = valueEditText.getText().toString().trim();
 
-		if (key.trim().isEmpty() || value.trim().isEmpty()) {
+		if (key.isEmpty() || value.isEmpty()) {
 			Toast.makeText(this, getText(R.string.invalid), Toast.LENGTH_LONG).show();
 			return;
 		}
@@ -41,10 +41,12 @@ public class EditActivity extends Activity {
 		setContentView(R.layout.edit);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		this.selectedConfigurationId = getIntent().getLongExtra("selectedConfigurationKey", -1);
+		this.selectedConfigurationId = getIntent().getLongExtra("selectedConfigurationId", -1);
 		
 		if (this.selectedConfigurationId == -1){
-			//TODO fazer tratamento
+			Toast.makeText(this, R.string.invalid_parameter_value, Toast.LENGTH_LONG).show();
+			NavUtils.navigateUpFromSameTask(this);
+			return;
 		}
 
 		Configuration configuration = Data.getInstance().getConfigs().get(this.selectedConfigurationId);
@@ -52,8 +54,8 @@ public class EditActivity extends Activity {
 		EditText keyInput = (EditText)findViewById(R.id.editKeyInput);
 		EditText valueInput = (EditText)findViewById(R.id.editValueInput);
 		
-		keyInput.setText(configuration.key);
-		valueInput.setText(configuration.value);
+		keyInput.setText(configuration.getKey());
+		valueInput.setText(configuration.getValue());
 	}
 
 	@Override
@@ -74,10 +76,11 @@ public class EditActivity extends Activity {
 			return true;
 		case R.id.remove:
 			/*
-			 * TODO implementar o remover
+			 * FIXME implementar a confirmacao
 			 */
-			NavUtils.navigateUpFromSameTask(this);
+			Data.getInstance().removeAll(this.selectedConfigurationId);
 			Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
+			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

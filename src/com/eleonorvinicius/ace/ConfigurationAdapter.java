@@ -29,7 +29,7 @@ public class ConfigurationAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
-		return Data.getInstance().getConfigsAsList().get(position).id;
+		return Data.getInstance().getConfigsAsList().get(position).getId();
 	}
 
 	@Override
@@ -39,10 +39,11 @@ public class ConfigurationAdapter extends BaseAdapter {
 		TextView key = (TextView) linearLayout.findViewById(R.id.key);
 		TextView value = (TextView) linearLayout.findViewById(R.id.value);
 
-		key.setText(Data.getInstance().getConfigsAsList().get(position).key);
-		value.setText(Data.getInstance().getConfigsAsList().get(position).value);
+		key.setText(Data.getInstance().getConfigsAsList().get(position).getKey());
+		value.setText(Data.getInstance().getConfigsAsList().get(position).getValue());
 
-		linearLayout.findViewById(R.id.configuration).setTag(Data.getInstance().getConfigsAsList().get(position).id);
+		linearLayout.findViewById(R.id.configuration).setTag(Data.getInstance().getConfigsAsList().get(position).getId());
+		linearLayout.findViewById(R.id.select).setTag(Data.getInstance().getConfigsAsList().get(position).getId());
 		return linearLayout;
 	}
 }

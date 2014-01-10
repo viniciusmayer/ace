@@ -16,7 +16,7 @@ public class Data {
 
 		for (long i = 0; i < 10; i += 1) {
 			Configuration configuration = new Configuration("key " + i, "value " + i * 2);
-			this.configs.put(configuration.id, configuration);
+			this.configs.put(configuration.getId(), configuration);
 		}
 	}
 
@@ -39,37 +39,29 @@ public class Data {
 		return dataAsList;
 	}
 
-	public String[] getConfigsAsArray() {
-		String[] dataAsArray = new String[this.configs.size()];
-
-		int i = 0;
-		for (Long l : this.configs.keySet()) {
-			Configuration configuration = this.configs.get(l);
-			dataAsArray[i] = configuration.getContent();
-			i += 1;
-		}
-
-		return dataAsArray;
-	}
-
 	public void update(Configuration configuration){
-		this.configs.put(configuration.id, configuration);
+		this.configs.put(configuration.getId(), configuration);
 	}
 	
 	public void add(Configuration configuration) throws ACEException {
-		if (this.configs.containsKey(configuration.key)){
-			throw new ACEException(R.string.keyAlreadyExists, "key already exists");
+		for (Long l : this.configs.keySet()) {
+			Configuration c = this.configs.get(l);
+			if (c.getKey().equals(configuration.getKey())){
+				throw new ACEException(R.string.keyAlreadyExists, "key already exists");
+			}
 		}
-		this.configs.put(configuration.id, configuration);
+		this.configs.put(configuration.getId(), configuration);
 	}
 
-	public void remove(String key) {
-		this.configs.remove(key);
+	public void removeAll(List<Long> ids){
+		for (Long l : ids) {
+			this.configs.remove(l);
+		}
 	}
-
-	public void removeAll(List<String> keys) {
-		for (String s : keys) {
-			this.configs.remove(s);
+	
+	public void removeAll(Long... ids) {
+		for (Long l : ids) {
+			this.configs.remove(l);
 		}
 	}
 

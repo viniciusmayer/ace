@@ -1,6 +1,7 @@
 package com.eleonorvinicius.ace;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -22,10 +23,10 @@ public class CreateActivity extends Activity {
 		EditText keyEditText = (EditText) findViewById(R.id.createKeyInput);
 		EditText valueEditText = (EditText) findViewById(R.id.createValueInput);
 
-		String key = keyEditText.getText().toString();
-		String value = valueEditText.getText().toString();
+		String key = keyEditText.getText().toString().trim();
+		String value = valueEditText.getText().toString().trim();
 
-		if (key.trim().isEmpty() || value.trim().isEmpty()) {
+		if (key.isEmpty() || value.isEmpty()) {
 			Toast.makeText(this, getText(R.string.invalid), Toast.LENGTH_LONG).show();
 			return;
 		}
@@ -37,6 +38,10 @@ public class CreateActivity extends Activity {
 		} catch (ACEException e) {
 			Toast.makeText(this, e.getMessageKey(), Toast.LENGTH_LONG).show();
 		}
+		
+		Intent intent = new Intent(this, EditActivity.class);
+		intent.putExtra("selectedConfigurationId", configuration.getId());
+		startActivity(intent);
 	}
 
 	@Override

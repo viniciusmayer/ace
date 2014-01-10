@@ -1,5 +1,8 @@
 package com.eleonorvinicius.ace;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -11,19 +14,29 @@ import android.widget.Toast;
 
 public class ListActivity extends android.app.ListActivity {
 
-	public void select(View view) {
-		Toast.makeText(view.getContext(), "nao implementado", Toast.LENGTH_SHORT).show();
+	private List<Long> selectedConfigurationsIds;
+
+	public void check(View view) {
+		Long tag = (Long) view.getTag();
+		if (this.selectedConfigurationsIds.contains(tag)) {
+			this.selectedConfigurationsIds.remove(tag);
+			Toast.makeText(view.getContext(), R.string.unchecked, Toast.LENGTH_SHORT).show();
+		} else {
+			this.selectedConfigurationsIds.add(tag);
+			Toast.makeText(view.getContext(), R.string.checked, Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	public void edit(View view) {
 		Intent intent = new Intent(this, EditActivity.class);
-		intent.putExtra("selectedConfigurationKey", (Long) view.getTag());
+		intent.putExtra("selectedConfigurationId", (Long) view.getTag());
 		startActivity(intent);
 	}
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.selectedConfigurationsIds = new ArrayList<Long>();
 		setListAdapter(new ConfigurationAdapter(this));
 	}
 
@@ -45,14 +58,19 @@ public class ListActivity extends android.app.ListActivity {
 			return true;
 		case R.id.remove:
 			/*
-			 * TODO implementar o remover
+			 * FIXME implementar a confirmacao
 			 */
+			Data.getInstance().removeAll(this.selectedConfigurationsIds);
+			((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 			Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
 			return true;
 		case R.id.removeAll:
+			/*
+			 * FIXME implementar a confirmacao
+			 */
 			Data.getInstance().clear();
-			Toast.makeText(this, getText(R.string.allremoved), Toast.LENGTH_LONG).show();
 			((BaseAdapter) getListAdapter()).notifyDataSetChanged();
+			Toast.makeText(this, getText(R.string.allremoved), Toast.LENGTH_LONG).show();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
