@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
-import com.eleonorvinicius.ace.data.Data;
+import com.eleonorvinicius.ace.data.ConfigurationData;
 import com.eleonorvinicius.ace.entity.Configuration;
 import com.eleonorvinicius.ace.exception.ACEException;
 
@@ -32,13 +32,13 @@ public class CreateConfigurationActivity extends Activity {
 		String value = valueEditText.getText().toString().trim();
 
 		if (key.isEmpty() || value.isEmpty()) {
-			Toast.makeText(this, getText(R.string.invalid), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, getText(R.string.invalid_key_value), Toast.LENGTH_LONG).show();
 			return;
 		}
 
 		Configuration configuration = new Configuration(key, value);
 		try {
-			Data.getInstance().add(configuration);
+			ConfigurationData.getInstance().add(configuration);
 			Toast.makeText(this, R.string.saved, Toast.LENGTH_LONG).show();
 		} catch (ACEException e) {
 			Toast.makeText(this, e.getMessageKey(), Toast.LENGTH_LONG).show();

@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eleonorvinicius.ace.R;
-import com.eleonorvinicius.ace.data.Data;
+import com.eleonorvinicius.ace.data.ConfigurationData;
 import com.eleonorvinicius.ace.entity.Configuration;
 
 public class ConfigurationAdapter extends BaseAdapter {
@@ -23,17 +23,17 @@ public class ConfigurationAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		return Data.getInstance().getConfigs().size();
+		return ConfigurationData.getInstance().getObjects().size();
 	}
 
 	@Override
 	public Configuration getItem(int position) {
-		return Data.getInstance().getConfigsAsList().get(position);
+		return ConfigurationData.getInstance().getObjectsAsList().get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		return Data.getInstance().getConfigsAsList().get(position).getId();
+		return ConfigurationData.getInstance().getObjectsAsList().get(position).getId();
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class ConfigurationAdapter extends BaseAdapter {
 		TextView key = (TextView) linearLayout.findViewById(R.id.key);
 		TextView value = (TextView) linearLayout.findViewById(R.id.value);
 
-		key.setText(Data.getInstance().getConfigsAsList().get(position).getKey());
-		value.setText(Data.getInstance().getConfigsAsList().get(position).getValue());
+		key.setText(ConfigurationData.getInstance().getObjectsAsList().get(position).getKey());
+		value.setText(ConfigurationData.getInstance().getObjectsAsList().get(position).getValue());
 
-		linearLayout.findViewById(R.id.configuration).setTag(Data.getInstance().getConfigsAsList().get(position).getId());
-		linearLayout.findViewById(R.id.select).setTag(Data.getInstance().getConfigsAsList().get(position).getId());
+		linearLayout.findViewById(R.id.configuration).setTag(ConfigurationData.getInstance().getObjectsAsList().get(position).getId());
+		linearLayout.findViewById(R.id.select).setTag(ConfigurationData.getInstance().getObjectsAsList().get(position).getId());
 		return linearLayout;
 	}
 }

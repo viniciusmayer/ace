@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
-import com.eleonorvinicius.ace.data.Data;
+import com.eleonorvinicius.ace.data.ConfigurationData;
 import com.eleonorvinicius.ace.entity.Configuration;
 
 public class EditConfigurationActivity extends Activity {
@@ -26,12 +26,12 @@ public class EditConfigurationActivity extends Activity {
 		String value = valueEditText.getText().toString().trim();
 
 		if (key.isEmpty() || value.isEmpty()) {
-			Toast.makeText(this, getText(R.string.invalid), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, getText(R.string.invalid_key_value), Toast.LENGTH_LONG).show();
 			return;
 		}
 
 		Configuration configuration = new Configuration(this.selectedConfigurationId, key, value);
-		Data.getInstance().update(configuration);
+		ConfigurationData.getInstance().update(configuration);
 		Toast.makeText(this, R.string.updated, Toast.LENGTH_LONG).show();
 	}
 
@@ -49,7 +49,7 @@ public class EditConfigurationActivity extends Activity {
 			return;
 		}
 
-		Configuration configuration = Data.getInstance().getConfigs().get(this.selectedConfigurationId);
+		Configuration configuration = ConfigurationData.getInstance().getObjects().get(this.selectedConfigurationId);
 
 		EditText keyInput = (EditText) findViewById(R.id.editKeyInput);
 		EditText valueInput = (EditText) findViewById(R.id.editValueInput);
@@ -78,7 +78,7 @@ public class EditConfigurationActivity extends Activity {
 			/*
 			 * FIXME implementar a confirmacao
 			 */
-			Data.getInstance().removeAll(this.selectedConfigurationId);
+			ConfigurationData.getInstance().removeAll(this.selectedConfigurationId);
 			Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
 			NavUtils.navigateUpFromSameTask(this);
 			return true;

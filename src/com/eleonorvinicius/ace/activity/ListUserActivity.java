@@ -8,22 +8,25 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
-import com.eleonorvinicius.ace.adapter.ConfigurationAdapter;
-import com.eleonorvinicius.ace.data.ConfigurationData;
+import com.eleonorvinicius.ace.adapter.UserAdapter;
+import com.eleonorvinicius.ace.data.UserData;
 
-public class ListConfigurationActivity extends ListBaseActivity {
+public class ListUserActivity extends ListBaseActivity {
 
 	@Override
 	public void edit(View view) {
+		/*
+		 * TODO trocar o editconfigurationactivity
+		 */
 		Intent intent = new Intent(this, EditConfigurationActivity.class);
-		intent.putExtra("selectedConfigurationId", (Long) view.getTag());
+		intent.putExtra("selectedUsersIds", (Long) view.getTag());
 		startActivity(intent);
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setListAdapter(new ConfigurationAdapter(this));
+		setListAdapter(new UserAdapter(this));
 	}
 
 	@Override
@@ -37,7 +40,7 @@ public class ListConfigurationActivity extends ListBaseActivity {
 		/*
 		 * FIXME implementar a confirmacao
 		 */
-		ConfigurationData.getInstance().clear();
+		UserData.getInstance().clear();
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		Toast.makeText(this, getText(R.string.allremoved), Toast.LENGTH_LONG).show();
 	}
@@ -47,13 +50,16 @@ public class ListConfigurationActivity extends ListBaseActivity {
 		/*
 		 * FIXME implementar a confirmacao
 		 */
-		ConfigurationData.getInstance().removeAll(this.getSelectedIds());
+		UserData.getInstance().removeAll(this.getSelectedIds());
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void onOptionItemCreateSelected() {
+		/*
+		 * TODO trocar o createconfigurationactivity
+		 */
 		startActivity(new Intent(this, CreateConfigurationActivity.class));
 	}
 }
