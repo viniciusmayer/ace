@@ -2,6 +2,7 @@ package com.eleonorvinicius.ace.activity;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.Toast;
@@ -30,28 +31,26 @@ public class ListUserActivity extends ListBaseActivity {
 	}
 
 	@Override
-	public void onOptionItemRemoveAllSelected() {
+	public void removeAllImpl() {
 		UserData.getInstance().clear();
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		Toast.makeText(this, getText(R.string.allremoved), Toast.LENGTH_LONG).show();
 	}
 
 	@Override
-	public void onOptionItemRemoveSelected() {
+	public void removeImpl() {
 		UserData.getInstance().removeAll(this.getSelectedIds());
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
 	}
 
 	@Override
-	public void onOptionItemCreateSelected() {
+	public void create(MenuItem item) {
 		Toast.makeText(this, getText(R.string.not_yet), Toast.LENGTH_LONG).show();
 	}
 
 	@Override
-	public void onOptionItemSaveSelected() {
-		/*
-		 * FIXME implementar?
-		 */
+	public void save(MenuItem item) {
+		Toast.makeText(this, getText(R.string.not_yet), Toast.LENGTH_LONG).show();
 	}
 }

@@ -1,6 +1,8 @@
 package com.eleonorvinicius.ace.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -14,7 +16,7 @@ import com.eleonorvinicius.ace.R;
 import com.eleonorvinicius.ace.data.ConfigurationData;
 import com.eleonorvinicius.ace.entity.Configuration;
 
-public class EditConfigurationActivity extends Activity {
+public class EditConfigurationActivity extends Activity implements BaseActivity {
 
 	private Long selectedConfigurationId;
 
@@ -22,6 +24,7 @@ public class EditConfigurationActivity extends Activity {
 		Intent intent = getIntent();
 		Configuration configuration = ConfigurationData.getInstance().getObjects().get(this.selectedConfigurationId);
 		intent.putExtra("configurationKey", configuration.getKey());
+		intent.putExtra("action", BACK_FROM_EDIT);
 		setResult(RESULT_OK, intent);
 		finish();
 	}
@@ -53,7 +56,7 @@ public class EditConfigurationActivity extends Activity {
 
 		if (this.selectedConfigurationId == -1) {
 			Toast.makeText(this, R.string.invalid_parameter_value, Toast.LENGTH_LONG).show();
-			NavUtils.navigateUpFromSameTask(this);
+			finish();
 			return;
 		}
 
@@ -78,16 +81,32 @@ public class EditConfigurationActivity extends Activity {
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
-		case R.id.create:
-			Intent intent = new Intent(this, CreateConfigurationActivity.class);
-			startActivity(intent);
-			return true;
-		case R.id.remove:
-			ConfigurationData.getInstance().removeAll(this.selectedConfigurationId);
-			Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
+	}
+
+	public void create(MenuItem item) {
+		Intent intent = new Intent(this, CreateConfigurationActivity.class);
+		startActivity(intent);
+		finish();
+	}
+
+	public void remove(MenuItem item) {
+		new AlertDialog.Builder(this).setIconAttribute(android.R.attr.alertDialogIcon).setTitle(R.string.confirm)
+				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						Configuration configuration = ConfigurationData.getInstance().getObjects().get(selectedConfigurationId);
+						ConfigurationData.getInstance().removeAll(selectedConfigurationId);
+						Intent intent = getIntent();
+						intent.putExtra("configurationKey", configuration.getKey());
+						intent.putExtra("action", BACK_FROM_EDIT_REMOVE);
+						setResult(RESULT_OK, intent);
+						finish();
+					}
+				}).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+					}
+				}).create().show();
 	}
 }

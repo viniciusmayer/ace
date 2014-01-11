@@ -47,6 +47,7 @@ public class CreateConfigurationActivity extends Activity {
 		Intent intent = new Intent(this, EditConfigurationActivity.class);
 		intent.putExtra("selectedConfigurationId", configuration.getId());
 		startActivity(intent);
+		finish();
 	}
 
 	@Override
@@ -62,7 +63,8 @@ public class CreateConfigurationActivity extends Activity {
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 }

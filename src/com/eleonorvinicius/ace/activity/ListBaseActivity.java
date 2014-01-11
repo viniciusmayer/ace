@@ -24,14 +24,14 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 		this.selectedIds = new ArrayList<Long>();
 	}
 
-	public Set<String> getSelectedIdsAsStringSet(){
+	public Set<String> getSelectedIdsAsStringSet() {
 		Set<String> selectedIdsAsListString = new HashSet<String>();
 		for (Long l : this.selectedIds) {
 			selectedIdsAsListString.add(l.toString());
 		}
 		return selectedIdsAsListString;
 	}
-	
+
 	public List<Long> getSelectedIds() {
 		return selectedIds;
 	}
@@ -62,52 +62,18 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
-		case R.id.create:
-			onOptionItemCreateSelected();
-			return true;
-		case R.id.remove:
-			new AlertDialog.Builder(this).setIconAttribute(android.R.attr.alertDialogIcon).setTitle(R.string.confirm)
-					.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int whichButton) {
-							onOptionItemRemoveSelected();
-						}
-					}).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int whichButton) {
-						}
-					}).create().show();
-			return true;
-		case R.id.removeAll:
-			new AlertDialog.Builder(this).setIconAttribute(android.R.attr.alertDialogIcon).setTitle(R.string.confirm)
-					.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int whichButton) {
-							onOptionItemRemoveAllSelected();
-						}
-					}).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int whichButton) {
-						}
-					}).create().show();
-			return true;
-		case R.id.save:
-			onOptionItemSaveSelected();
-			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
-	
-	public abstract void onOptionItemSaveSelected();
 
-	public abstract void onOptionItemRemoveAllSelected();
-
-	public abstract void onOptionItemRemoveSelected();
-
-	public abstract void onOptionItemCreateSelected();
-	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putSerializable("selectedIds", new SelectedIdsDTO(this.selectedIds));
 		super.onSaveInstanceState(outState);
 	}
-	
+
 	@Override
 	protected void onRestoreInstanceState(Bundle state) {
 		super.onRestoreInstanceState(state);
@@ -116,7 +82,39 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		/*
 		 * FIXME imagino que seja necessario passar item por item da lista
-		 * marcando o checkbox como checked...  serah mesmo? :(
-		 */			
+		 * marcando o checkbox como checked... serah mesmo? :(
+		 */
 	}
+
+	public void removeAll(MenuItem item) {
+		new AlertDialog.Builder(this).setIconAttribute(android.R.attr.alertDialogIcon).setTitle(R.string.confirm)
+				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						removeAllImpl();
+					}
+				}).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+					}
+				}).create().show();
+	}
+
+	public abstract void removeAllImpl();
+
+	public void remove(MenuItem item) {
+		new AlertDialog.Builder(this).setIconAttribute(android.R.attr.alertDialogIcon).setTitle(R.string.confirm)
+				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						removeImpl();
+					}
+				}).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+					}
+				}).create().show();
+	}
+
+	public abstract void removeImpl();
+
+	public abstract void create(MenuItem item);
+
+	public abstract void save(MenuItem item);
 }
