@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace.activity;
+package com.eleonorvinicius.ace.activity.impl;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,7 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
-import com.eleonorvinicius.ace.data.ConfigurationData;
+import com.eleonorvinicius.ace.activity.BaseActivity;
+import com.eleonorvinicius.ace.data.impl.ConfigurationData;
 import com.eleonorvinicius.ace.entity.Configuration;
 
 public class EditConfigurationActivity extends Activity implements BaseActivity {

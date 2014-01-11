@@ -1,6 +1,7 @@
-package com.eleonorvinicius.ace.data;
+package com.eleonorvinicius.ace.data.impl;
 
 import com.eleonorvinicius.ace.R;
+import com.eleonorvinicius.ace.data.Data;
 import com.eleonorvinicius.ace.entity.User;
 import com.eleonorvinicius.ace.exception.ACEException;
 

@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eleonorvinicius.ace.R;
-import com.eleonorvinicius.ace.data.UserData;
+import com.eleonorvinicius.ace.data.impl.UserData;
 import com.eleonorvinicius.ace.entity.User;
 
 public class UserAdapter extends BaseAdapter {

@@ -15,6 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
+import com.eleonorvinicius.ace.dto.SelectedIdsDTO;
 
 public abstract class ListBaseActivity extends android.app.ListActivity implements BaseActivity {
 

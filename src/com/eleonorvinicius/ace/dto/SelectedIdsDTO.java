@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace.activity;
+package com.eleonorvinicius.ace.dto;
 
 import java.io.Serializable;
 import java.util.List;

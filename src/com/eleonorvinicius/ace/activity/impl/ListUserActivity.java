@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace.activity;
+package com.eleonorvinicius.ace.activity.impl;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,8 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
+import com.eleonorvinicius.ace.activity.ListBaseActivity;
 import com.eleonorvinicius.ace.adapter.UserAdapter;
-import com.eleonorvinicius.ace.data.UserData;
+import com.eleonorvinicius.ace.data.impl.UserData;
 
 public class ListUserActivity extends ListBaseActivity {
 

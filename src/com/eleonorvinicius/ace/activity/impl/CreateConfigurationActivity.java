@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace.activity;
+package com.eleonorvinicius.ace.activity.impl;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
-import com.eleonorvinicius.ace.data.ConfigurationData;
+import com.eleonorvinicius.ace.data.impl.ConfigurationData;
 import com.eleonorvinicius.ace.entity.Configuration;
 import com.eleonorvinicius.ace.exception.ACEException;
 

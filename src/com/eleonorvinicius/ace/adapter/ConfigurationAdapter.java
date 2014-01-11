@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eleonorvinicius.ace.R;
-import com.eleonorvinicius.ace.data.ConfigurationData;
+import com.eleonorvinicius.ace.data.impl.ConfigurationData;
 import com.eleonorvinicius.ace.entity.Configuration;
 
 public class ConfigurationAdapter extends BaseAdapter {

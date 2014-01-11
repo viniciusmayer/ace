@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace.activity;
+package com.eleonorvinicius.ace.activity.impl;
 
 import java.util.HashSet;
 
@@ -13,8 +13,9 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
+import com.eleonorvinicius.ace.activity.ListBaseActivity;
 import com.eleonorvinicius.ace.adapter.ConfigurationAdapter;
-import com.eleonorvinicius.ace.data.ConfigurationData;
+import com.eleonorvinicius.ace.data.impl.ConfigurationData;
 
 public class ListConfigurationActivity extends ListBaseActivity {
 

@@ -18,7 +18,8 @@
     <string name="back">Back</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
-    <string name="success">%s updated successfully</string>
+    <string name="key_updated">%s updated</string>
+    <string name="key_removed">%s removed</string>
     <string name="checked">Checked</string>
     <string name="unchecked">Unchecked</string>
     <string name="saved">Saved</string>
