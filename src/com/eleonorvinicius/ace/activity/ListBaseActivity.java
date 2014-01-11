@@ -1,10 +1,12 @@
 package com.eleonorvinicius.ace.activity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,4 +80,28 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 	public abstract void onOptionItemRemoveSelected();
 
 	public abstract void onOptionItemCreateSelected();
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putSerializable("selectedIds", new Fake(this.selectedIds));
+		super.onSaveInstanceState(outState);
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Bundle state) {
+		super.onRestoreInstanceState(state);
+		Fake fake = (Fake) state.getSerializable("selectedIds");
+		this.selectedIds = fake.getSelectedIds();
+	}
+	
+	class Fake implements Serializable{
+		private static final long serialVersionUID = 1301540634086093853L;
+		private List<Long> selectedIds;
+		public Fake(List<Long> selectedIds) {
+			this.selectedIds = selectedIds;
+		}
+		public List<Long> getSelectedIds() {
+			return selectedIds;
+		}
+	}
 }
