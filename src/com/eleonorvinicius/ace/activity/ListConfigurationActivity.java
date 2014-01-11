@@ -1,6 +1,9 @@
 package com.eleonorvinicius.ace.activity;
 
+import java.util.HashSet;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +16,9 @@ import com.eleonorvinicius.ace.adapter.ConfigurationAdapter;
 import com.eleonorvinicius.ace.data.ConfigurationData;
 
 public class ListConfigurationActivity extends ListBaseActivity {
+
+	SharedPreferences.Editor editor;
+	SharedPreferences sharedPreferences;
 
 	@Override
 	public void edit(View view) {
@@ -39,6 +45,11 @@ public class ListConfigurationActivity extends ListBaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setListAdapter(new ConfigurationAdapter(this));
+
+		sharedPreferences = this.getSharedPreferences("com.eleonorvinicius.ace.activity.configuration", 0);
+		editor = sharedPreferences.edit();
+
+		this.setSelectedIds(sharedPreferences.getStringSet("selectedIds", new HashSet<String>()));
 	}
 
 	@Override
@@ -64,5 +75,12 @@ public class ListConfigurationActivity extends ListBaseActivity {
 	@Override
 	public void onOptionItemCreateSelected() {
 		startActivity(new Intent(this, CreateConfigurationActivity.class));
+	}
+
+	@Override
+	public void onOptionItemSaveSelected() {
+		this.editor.putStringSet("selectedIds", this.getSelectedIdsAsStringSet());
+		this.editor.commit();
+		Toast.makeText(this, getText(R.string.saved), Toast.LENGTH_LONG).show();
 	}
 }

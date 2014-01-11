@@ -47,4 +47,11 @@ public class ListUserActivity extends ListBaseActivity {
 	public void onOptionItemCreateSelected() {
 		Toast.makeText(this, getText(R.string.not_yet), Toast.LENGTH_LONG).show();
 	}
+
+	@Override
+	public void onOptionItemSaveSelected() {
+		/*
+		 * FIXME implementar?
+		 */
+	}
 }

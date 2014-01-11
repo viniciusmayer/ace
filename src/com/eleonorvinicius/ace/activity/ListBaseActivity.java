@@ -1,8 +1,9 @@
 package com.eleonorvinicius.ace.activity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
@@ -22,8 +24,22 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 		this.selectedIds = new ArrayList<Long>();
 	}
 
+	public Set<String> getSelectedIdsAsStringSet(){
+		Set<String> selectedIdsAsListString = new HashSet<String>();
+		for (Long l : this.selectedIds) {
+			selectedIdsAsListString.add(l.toString());
+		}
+		return selectedIdsAsListString;
+	}
+	
 	public List<Long> getSelectedIds() {
 		return selectedIds;
+	}
+
+	public void setSelectedIds(Set<String> selectedIds) {
+		for (String string : selectedIds) {
+			this.selectedIds.add(Long.valueOf(string));
+		}
 	}
 
 	public void check(View view) {
@@ -71,9 +87,14 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 						}
 					}).create().show();
 			return true;
+		case R.id.save:
+			onOptionItemSaveSelected();
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public abstract void onOptionItemSaveSelected();
 
 	public abstract void onOptionItemRemoveAllSelected();
 
@@ -83,25 +104,19 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		outState.putSerializable("selectedIds", new Fake(this.selectedIds));
+		outState.putSerializable("selectedIds", new SelectedIdsDTO(this.selectedIds));
 		super.onSaveInstanceState(outState);
 	}
 	
 	@Override
 	protected void onRestoreInstanceState(Bundle state) {
 		super.onRestoreInstanceState(state);
-		Fake fake = (Fake) state.getSerializable("selectedIds");
-		this.selectedIds = fake.getSelectedIds();
-	}
-	
-	class Fake implements Serializable{
-		private static final long serialVersionUID = 1301540634086093853L;
-		private List<Long> selectedIds;
-		public Fake(List<Long> selectedIds) {
-			this.selectedIds = selectedIds;
-		}
-		public List<Long> getSelectedIds() {
-			return selectedIds;
-		}
+		SelectedIdsDTO selectedIdsDTO = (SelectedIdsDTO) state.getSerializable("selectedIds");
+		this.selectedIds = selectedIdsDTO.getSelectedIds();
+		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
+		/*
+		 * FIXME imagino que seja necessario passar item por item da lista
+		 * marcando o checkbox como checked...  serah mesmo? :(
+		 */			
 	}
 }

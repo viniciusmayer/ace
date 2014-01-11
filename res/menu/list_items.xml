@@ -13,5 +13,9 @@
         android:id="@+id/removeAll"
         android:showAsAction="never"
         android:title="@string/remove_all"/>
-
+    <item
+        android:id="@+id/save"
+        android:showAsAction="never"
+        android:title="@string/save"/>
+    
 </menu>
