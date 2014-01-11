@@ -50,6 +50,13 @@
         android:layout_height="wrap_content" >
 
         <Button
+            android:id="@+id/editBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:onClick="back" />
+
+        <Button
             android:id="@+id/editUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -18,6 +18,14 @@ public class EditConfigurationActivity extends Activity {
 
 	private Long selectedConfigurationId;
 
+	public void back(View view) {
+		Intent intent = getIntent();
+		Configuration configuration = ConfigurationData.getInstance().getObjects().get(this.selectedConfigurationId);
+		intent.putExtra("configurationKey", configuration.getKey());
+		setResult(RESULT_OK, intent);
+		finish();
+	}
+
 	public void update(View view) {
 		EditText keyEditText = (EditText) findViewById(R.id.editKeyInput);
 		EditText valueEditText = (EditText) findViewById(R.id.editValueInput);
@@ -75,9 +83,6 @@ public class EditConfigurationActivity extends Activity {
 			startActivity(intent);
 			return true;
 		case R.id.remove:
-			/*
-			 * FIXME implementar a confirmacao
-			 */
 			ConfigurationData.getInstance().removeAll(this.selectedConfigurationId);
 			Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
 			NavUtils.navigateUpFromSameTask(this);

@@ -5,10 +5,9 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:maxSdkVersion="19"
         android:minSdkVersion="14"
         android:targetSdkVersion="16" />
-
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -27,31 +26,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--
-        activity
-            android:name="com.eleonorvinicius.ace.List15Activity"
-            android:label="@string/title_activity_list" >
-        </activity>
-        <activity
-            android:name="com.eleonorvinicius.ace.List16Activity"
-            android:label="@string/title_activity_list" >
-        </activity
-        -->
         <activity
             android:name="com.eleonorvinicius.ace.activity.EditConfigurationActivity"
             android:label="@string/edit_configuration"
             android:parentActivityName="com.eleonorvinicius.ace.activity.ListConfigurationActivity" >
+
+            <!--
+            intent-filter>
+                <action android:name="EditConfigurationActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter
+            -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eleonorvinicius.ace.ListActivity" />
+                android:value="com.eleonorvinicius.ace.activity.ListConfigurationActivity" />
         </activity>
         <activity
             android:name="com.eleonorvinicius.ace.activity.CreateConfigurationActivity"
             android:label="@string/create_configuration"
             android:parentActivityName="com.eleonorvinicius.ace.activity.ListConfigurationActivity" >
+
+            <!--
+            intent-filter>
+                <action android:name="CreateConfigurationActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter
+            -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eleonorvinicius.ace.ListActivity" />
+                android:value="com.eleonorvinicius.ace.activity.ListConfigurationActivity" />
         </activity>
     </application>
 

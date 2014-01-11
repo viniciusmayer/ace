@@ -3,6 +3,8 @@ package com.eleonorvinicius.ace.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,10 +12,10 @@ import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
 
-public abstract class ListBaseActivity extends android.app.ListActivity {
+public abstract class ListBaseActivity extends android.app.ListActivity implements BaseActivity {
 
 	private List<Long> selectedIds;
-	
+
 	public ListBaseActivity() {
 		this.selectedIds = new ArrayList<Long>();
 	}
@@ -46,10 +48,26 @@ public abstract class ListBaseActivity extends android.app.ListActivity {
 			onOptionItemCreateSelected();
 			return true;
 		case R.id.remove:
-			onOptionItemRemoveSelected();
+			new AlertDialog.Builder(this).setIconAttribute(android.R.attr.alertDialogIcon).setTitle(R.string.confirm)
+					.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							onOptionItemRemoveSelected();
+						}
+					}).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+						}
+					}).create().show();
 			return true;
 		case R.id.removeAll:
-			onOptionItemRemoveAllSelected();
+			new AlertDialog.Builder(this).setIconAttribute(android.R.attr.alertDialogIcon).setTitle(R.string.confirm)
+					.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							onOptionItemRemoveAllSelected();
+						}
+					}).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+						}
+					}).create().show();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

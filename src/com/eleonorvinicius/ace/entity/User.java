@@ -17,7 +17,7 @@ public class User extends Entity {
 		this.created = Calendar.getInstance();
 		this.updated = Calendar.getInstance();
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}

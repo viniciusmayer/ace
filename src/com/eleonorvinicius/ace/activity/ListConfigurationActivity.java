@@ -1,6 +1,7 @@
 package com.eleonorvinicius.ace.activity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -17,7 +18,21 @@ public class ListConfigurationActivity extends ListBaseActivity {
 	public void edit(View view) {
 		Intent intent = new Intent(this, EditConfigurationActivity.class);
 		intent.putExtra("selectedConfigurationId", (Long) view.getTag());
-		startActivity(intent);
+		startActivityForResult(intent, EDIT_CONFIGURATION_ACTIVITY);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case EDIT_CONFIGURATION_ACTIVITY:
+			String configurationKey = data.getStringExtra("configurationKey");
+			Resources resources = getResources();
+			Toast.makeText(this, String.format(resources.getString(R.string.success), configurationKey), Toast.LENGTH_LONG).show();
+			break;
+		default:
+			break;
+		}
 	}
 
 	@Override
@@ -34,9 +49,6 @@ public class ListConfigurationActivity extends ListBaseActivity {
 
 	@Override
 	public void onOptionItemRemoveAllSelected() {
-		/*
-		 * FIXME implementar a confirmacao
-		 */
 		ConfigurationData.getInstance().clear();
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		Toast.makeText(this, getText(R.string.allremoved), Toast.LENGTH_LONG).show();
@@ -44,9 +56,6 @@ public class ListConfigurationActivity extends ListBaseActivity {
 
 	@Override
 	public void onOptionItemRemoveSelected() {
-		/*
-		 * FIXME implementar a confirmacao
-		 */
 		ConfigurationData.getInstance().removeAll(this.getSelectedIds());
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
