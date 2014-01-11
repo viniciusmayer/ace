@@ -38,7 +38,7 @@ public class ConfigurationAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View view, ViewGroup viewGroup) {
-		LinearLayout linearLayout = (LinearLayout) layoutInflater.inflate(R.layout.configuration, null);
+		LinearLayout linearLayout = (LinearLayout) layoutInflater.inflate(R.layout.configuration_item, null);
 
 		TextView key = (TextView) linearLayout.findViewById(R.id.key);
 		TextView value = (TextView) linearLayout.findViewById(R.id.value);

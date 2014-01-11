@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -23,6 +24,12 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 
 	public ListBaseActivity() {
 		this.selectedIds = new ArrayList<Long>();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.list_items, menu);
+		return true;
 	}
 
 	public Set<String> getSelectedIdsAsStringSet() {

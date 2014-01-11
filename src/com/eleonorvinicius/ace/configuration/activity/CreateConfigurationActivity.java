@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace.activity.impl;
+package com.eleonorvinicius.ace.configuration.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -45,7 +45,7 @@ public class CreateConfigurationActivity extends Activity {
 		}
 
 		Intent intent = new Intent(this, EditConfigurationActivity.class);
-		intent.putExtra("selectedConfigurationId", configuration.getId());
+		intent.putExtra("selectedId", configuration.getId());
 		startActivity(intent);
 		finish();
 	}
@@ -53,7 +53,7 @@ public class CreateConfigurationActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.create);
+		setContentView(R.layout.create_configuration);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 

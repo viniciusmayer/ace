@@ -2,41 +2,47 @@
 <resources>
 
     <string name="app_name">CRUD Example</string>
-    <string name="action_settings">Settings</string>
+    <!-- titles -->
     <string name="edit_configuration">Edit configuration</string>
     <string name="list_configuration">Configurations\'s list</string>
     <string name="create_configuration">Create configuration</string>
     <string name="edit_user">Edit user</string>
     <string name="list_user">Users\'s list</string>
-    <string name="create_user">Create user</string>
-    <string name="confirm">Confirm?</string>
+    <!-- confirmations -->
+    <string name="confirm">Are you sure?</string>
+    <!-- labels -->
     <string name="key_label">Key</string>
     <string name="value_label">Value</string>
+    <string name="email_label">Email</string>
+    <string name="password_label">Password</string>
+    <!-- actions -->
     <string name="update">Update</string>
     <string name="save">Save</string>
     <string name="clean">Clean</string>
     <string name="back">Back</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
-    <string name="key_updated">%s updated</string>
-    <string name="key_removed">%s removed</string>
-    <string name="checked">Checked</string>
+    <!-- messages -->
+    <string name="object_updated">%s updated</string>
+    <string name="object_removed">%s removed</string>
     <string name="unchecked">Unchecked</string>
     <string name="saved">Saved</string>
     <string name="updated">Updated</string>
     <string name="removed">Removed</string>
     <string name="cleaned">Cleaned</string>
     <string name="allremoved">All removed</string>
+    <!-- notifications -->
     <string name="not_yet">Not yet</string>
+    <string name="checked">Checked</string>
+    <!-- validations -->
     <string name="invalid_key_value">Invalid key/value</string>
     <string name="invalid_email_password">Invalid email/password</string>
     <string name="invalid_parameter_value">Invalid parameter value</string>
     <string name="key_already_exists">Key already exists</string>
     <string name="email_already_exists">Email already exists</string>
+    <!-- menu items -->
     <string name="create">New</string>
     <string name="remove">Remove</string>
     <string name="remove_all">Remove All</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="hello_world">Hello world!</string>
 
 </resources>

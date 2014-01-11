@@ -1,7 +1,9 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tableLayout"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true" >
 
     <TableRow
         android:id="@+id/tableRow1"
@@ -9,17 +11,17 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/editKeyLabel"
+            android:id="@+id/editEmailLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/key_label" />
+            android:text="@string/email_label" />
 
         <EditText
-            android:id="@+id/editKeyInput"
+            android:id="@+id/editEmailInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" >
+            android:inputType="textEmailAddress" >
 
             <requestFocus />
         </EditText>
@@ -31,17 +33,17 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/editValueLabel"
+            android:id="@+id/editPasswordLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/value_label" />
+            android:text="@string/password_label" />
 
         <EditText
-            android:id="@+id/editValueInput"
+            android:id="@+id/editPasswordInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="textPassword" />
     </TableRow>
 
     <TableRow
@@ -50,18 +52,11 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/editBack"
+            android:id="@+id/editSaveOrUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/back"
-            android:onClick="back" />
-
-        <Button
-            android:id="@+id/editUpdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/update"
-            android:onClick="update" />
+            android:onClick="update"
+            android:text="@string/save" />
     </TableRow>
 
 </TableLayout>

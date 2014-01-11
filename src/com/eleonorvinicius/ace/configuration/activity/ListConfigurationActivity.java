@@ -1,4 +1,4 @@
-package com.eleonorvinicius.ace.activity.impl;
+package com.eleonorvinicius.ace.configuration.activity;
 
 import java.util.HashSet;
 
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -25,7 +24,7 @@ public class ListConfigurationActivity extends ListBaseActivity {
 	@Override
 	public void edit(View view) {
 		Intent intent = new Intent(this, EditConfigurationActivity.class);
-		intent.putExtra("selectedConfigurationId", (Long) view.getTag());
+		intent.putExtra("selectedId", (Long) view.getTag());
 		startActivityForResult(intent, EDIT_CONFIGURATION_ACTIVITY);
 	}
 
@@ -40,10 +39,10 @@ public class ListConfigurationActivity extends ListBaseActivity {
 			Resources resources = getResources();
 			switch (action) {
 			case BACK_FROM_EDIT:
-				Toast.makeText(this, String.format(resources.getString(R.string.key_updated), configurationKey), Toast.LENGTH_LONG).show();
+				Toast.makeText(this, String.format(resources.getString(R.string.object_updated), configurationKey), Toast.LENGTH_LONG).show();
 				break;
 			case BACK_FROM_EDIT_REMOVE:
-				Toast.makeText(this, String.format(resources.getString(R.string.key_removed), configurationKey), Toast.LENGTH_LONG).show();
+				Toast.makeText(this, String.format(resources.getString(R.string.object_removed), configurationKey), Toast.LENGTH_LONG).show();
 				break;
 			}
 		default:
@@ -60,12 +59,6 @@ public class ListConfigurationActivity extends ListBaseActivity {
 		editor = sharedPreferences.edit();
 
 		this.setSelectedIds(sharedPreferences.getStringSet("selectedIds", new HashSet<String>()));
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.list_items, menu);
-		return true;
 	}
 
 	@Override

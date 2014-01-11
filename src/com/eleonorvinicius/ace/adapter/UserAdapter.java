@@ -38,10 +38,10 @@ public class UserAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View view, ViewGroup viewGroup) {
-		LinearLayout linearLayout = (LinearLayout) layoutInflater.inflate(R.layout.user, null);
-		TextView key = (TextView) linearLayout.findViewById(R.id.email);
+		LinearLayout linearLayout = (LinearLayout) layoutInflater.inflate(R.layout.user_item, null);
+		TextView email = (TextView) linearLayout.findViewById(R.id.email);
 		User user = UserData.getInstance().getObjectsAsList().get(position);
-		key.setText(user.getEmail());
+		email.setText(user.getEmail());
 		linearLayout.findViewById(R.id.user).setTag(user.getId());
 		linearLayout.findViewById(R.id.select).setTag(user.getId());
 		return linearLayout;

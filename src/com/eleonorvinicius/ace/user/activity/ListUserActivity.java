@@ -1,7 +1,7 @@
-package com.eleonorvinicius.ace.activity.impl;
+package com.eleonorvinicius.ace.user.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -16,19 +16,15 @@ public class ListUserActivity extends ListBaseActivity {
 
 	@Override
 	public void edit(View view) {
-		Toast.makeText(this, getText(R.string.not_yet), Toast.LENGTH_LONG).show();
+		Intent intent = new Intent(this, EditUserActivity.class);
+		intent.putExtra("selectedId", (Long) view.getTag());
+		startActivityForResult(intent, EDIT_USER_ACTIVITY);
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setListAdapter(new UserAdapter(this));
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.list_items, menu);
-		return true;
 	}
 
 	@Override
@@ -47,7 +43,7 @@ public class ListUserActivity extends ListBaseActivity {
 
 	@Override
 	public void create(MenuItem item) {
-		Toast.makeText(this, getText(R.string.not_yet), Toast.LENGTH_LONG).show();
+		startActivity(new Intent(this, EditUserActivity.class));
 	}
 
 	@Override

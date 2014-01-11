@@ -10,6 +10,14 @@ public class User extends Entity {
 	private Calendar created;
 	private Calendar updated;
 
+	public User(Long id, String email, String password) {
+		this.setId(id);
+		this.email = email;
+		this.password = password;
+		this.created = Calendar.getInstance();
+		this.updated = Calendar.getInstance();
+	}
+
 	public User(String email, String password) {
 		this.setId(new Random().nextLong());
 		this.email = email;
