@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -37,17 +40,31 @@ public class ConfigurationAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View view, ViewGroup viewGroup) {
+	public View getView(final int position, View view, ViewGroup viewGroup) {
 		LinearLayout linearLayout = (LinearLayout) layoutInflater.inflate(R.layout.configuration_item, null);
 
 		TextView key = (TextView) linearLayout.findViewById(R.id.key);
 		TextView value = (TextView) linearLayout.findViewById(R.id.value);
 
-		key.setText(ConfigurationData.getInstance().getObjectsAsList().get(position).getKey());
-		value.setText(ConfigurationData.getInstance().getObjectsAsList().get(position).getValue());
+		Configuration configuration = getItem(position);
+		
+		key.setText(configuration.getKey());
+		value.setText(configuration.getValue());
 
-		linearLayout.findViewById(R.id.configuration).setTag(ConfigurationData.getInstance().getObjectsAsList().get(position).getId());
-		linearLayout.findViewById(R.id.select).setTag(ConfigurationData.getInstance().getObjectsAsList().get(position).getId());
+		linearLayout.findViewById(R.id.configuration).setTag(configuration.getId());
+
+		CheckBox checkBox = (CheckBox) linearLayout.findViewById(R.id.select);
+		checkBox.setTag(configuration.getId());
+		checkBox.setChecked(configuration.isChecked());
+		
+		checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				getItem(position).setChecked(isChecked);
+			}
+		});
 		return linearLayout;
 	}
+	
+	
 }

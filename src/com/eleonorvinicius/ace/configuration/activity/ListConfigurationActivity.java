@@ -1,7 +1,5 @@
 package com.eleonorvinicius.ace.configuration.activity;
 
-import java.util.HashSet;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -20,7 +18,7 @@ public class ListConfigurationActivity extends ListBaseActivity {
 
 	SharedPreferences.Editor editor;
 	SharedPreferences sharedPreferences;
-
+	
 	@Override
 	public void edit(View view) {
 		Intent intent = new Intent(this, EditConfigurationActivity.class);
@@ -55,10 +53,10 @@ public class ListConfigurationActivity extends ListBaseActivity {
 		super.onCreate(savedInstanceState);
 		setListAdapter(new ConfigurationAdapter(this));
 
-		sharedPreferences = this.getSharedPreferences("com.eleonorvinicius.ace.activity.configuration", 0);
+		sharedPreferences = this.getSharedPreferences(COM_ELEONORVINICIUS_ACE_SETTINGS, MODE_PRIVATE);
 		editor = sharedPreferences.edit();
-
-		this.setSelectedIds(sharedPreferences.getStringSet("selectedIds", new HashSet<String>()));
+		
+		//this.setSelectedIds(sharedPreferences.getStringSet("selectedIds", new HashSet<String>()));
 	}
 
 	@Override
@@ -70,7 +68,10 @@ public class ListConfigurationActivity extends ListBaseActivity {
 
 	@Override
 	public void removeImpl() {
-		ConfigurationData.getInstance().removeAll(this.getSelectedIds());
+		/*
+		 * FIXME corrigir
+		 */
+		//ConfigurationData.getInstance().removeAll(this.getSelectedIds());
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
 	}
@@ -82,8 +83,11 @@ public class ListConfigurationActivity extends ListBaseActivity {
 
 	@Override
 	public void save(MenuItem item) {
-		this.editor.putStringSet("selectedIds", this.getSelectedIdsAsStringSet());
-		this.editor.commit();
-		Toast.makeText(this, getText(R.string.saved), Toast.LENGTH_LONG).show();
+		/*
+		 * FIXME corrigir
+		 */
+		/*this.editor.putStringSet("selectedIds", this.getSelectedIdsAsStringSet());
+		this.editor.commit();*/
+		Toast.makeText(this, getText(R.string.not_yet), Toast.LENGTH_LONG).show();
 	}
 }

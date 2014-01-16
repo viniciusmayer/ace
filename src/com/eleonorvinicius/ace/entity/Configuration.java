@@ -6,6 +6,7 @@ public class Configuration extends Entity {
 
 	private String key;
 	private String value;
+	private boolean checked;
 
 	public Configuration(String key, String value) {
 		this.setId(new Random().nextLong());
@@ -34,4 +35,13 @@ public class Configuration extends Entity {
 	public void setValue(String value) {
 		this.value = value;
 	}
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+
 }

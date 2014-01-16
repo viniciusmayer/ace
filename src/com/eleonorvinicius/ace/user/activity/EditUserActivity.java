@@ -96,12 +96,7 @@ public class EditUserActivity extends EditBaseActivity {
 
 	@Override
 	public void removeImpl() {
-		User user = UserData.getInstance().getObjects().get(this.getSelectedId());
 		UserData.getInstance().removeAll(this.getSelectedId());
-		Intent intent = getIntent();
-		intent.putExtra("userEmail", user.getEmail());
-		intent.putExtra("action", BACK_FROM_EDIT_REMOVE);
-		setResult(RESULT_OK, intent);
 		finish();
 	}
 }

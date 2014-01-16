@@ -18,7 +18,7 @@ public class ListUserActivity extends ListBaseActivity {
 	public void edit(View view) {
 		Intent intent = new Intent(this, EditUserActivity.class);
 		intent.putExtra("selectedId", (Long) view.getTag());
-		startActivityForResult(intent, EDIT_USER_ACTIVITY);
+		startActivity(intent);
 	}
 
 	@Override
@@ -36,9 +36,12 @@ public class ListUserActivity extends ListBaseActivity {
 
 	@Override
 	public void removeImpl() {
-		UserData.getInstance().removeAll(this.getSelectedIds());
-		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
-		Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
+		/*
+		 * FIXME corrigir
+		 */
+		/*UserData.getInstance().removeAll(this.getSelectedIds());
+		((BaseAdapter) getListAdapter()).notifyDataSetChanged();*/
+		Toast.makeText(this, getText(R.string.not_yet), Toast.LENGTH_LONG).show();
 	}
 
 	@Override

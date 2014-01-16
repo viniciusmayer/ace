@@ -1,38 +1,61 @@
 package com.eleonorvinicius.ace.activity;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.BaseAdapter;
-import android.widget.Toast;
 
 import com.eleonorvinicius.ace.R;
-import com.eleonorvinicius.ace.dto.SelectedIdsDTO;
 
 public abstract class ListBaseActivity extends android.app.ListActivity implements BaseActivity {
 
-	private List<Long> selectedIds;
+	//private List<Long> selectedIds;
+	private MenuItem menuItem;
+	
+	BroadcastReceiver receiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			boolean booleanExtra = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
+			menuItem.setEnabled(!booleanExtra);
+		}
+	};
 
-	public ListBaseActivity() {
-		this.selectedIds = new ArrayList<Long>();
+	@Override
+	protected void onStart() {
+		super.onStart();
+		registerReceiver(receiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
 	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		unregisterReceiver(receiver);
+	}
+
+	/*public ListBaseActivity() {
+		this.selectedIds = new ArrayList<Long>();
+	}*/
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.list_items, menu);
+		menuItem = menu.findItem(R.id.save);
 		return true;
 	}
 
-	public Set<String> getSelectedIdsAsStringSet() {
+	public MenuItem getMenuItem() {
+		return menuItem;
+	}
+
+	/*public Set<String> getSelectedIdsAsStringSet() {
 		Set<String> selectedIdsAsListString = new HashSet<String>();
 		for (Long l : this.selectedIds) {
 			selectedIdsAsListString.add(l.toString());
@@ -59,7 +82,7 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 			this.selectedIds.add(tag);
 			Toast.makeText(view.getContext(), R.string.checked, Toast.LENGTH_SHORT).show();
 		}
-	}
+	}*/
 
 	public abstract void edit(View view);
 
@@ -78,20 +101,22 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		outState.putSerializable("selectedIds", new SelectedIdsDTO(this.selectedIds));
+		/*
+		 * FIXME corrigir
+		 */
+		//outState.putSerializable("selectedIds", new SelectedIdsDTO(this.selectedIds));
 		super.onSaveInstanceState(outState);
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Bundle state) {
 		super.onRestoreInstanceState(state);
-		SelectedIdsDTO selectedIdsDTO = (SelectedIdsDTO) state.getSerializable("selectedIds");
-		this.selectedIds = selectedIdsDTO.getSelectedIds();
-		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		/*
-		 * FIXME imagino que seja necessario passar item por item da lista
-		 * marcando o checkbox como checked... serah mesmo? :(
+		 * FIXME corrigir
 		 */
+		/*SelectedIdsDTO selectedIdsDTO = (SelectedIdsDTO) state.getSerializable("selectedIds");
+		this.selectedIds = selectedIdsDTO.getSelectedIds();
+		((BaseAdapter) getListAdapter()).notifyDataSetChanged();*/
 	}
 
 	public void removeAll(MenuItem item) {

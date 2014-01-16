@@ -8,6 +8,9 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="16" />
 
+    <!-- uses-permissions -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    
     <!-- configuration -->
     <application
         android:allowBackup="true"
@@ -15,13 +18,18 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.eleonorvinicius.ace.configuration.activity.ListConfigurationActivity"
+            android:name=".configuration.activity.ListConfigurationActivity"
             android:label="@string/list_configuration" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name="com.eleonorvinicius.ace.configuration.activity.EditConfigurationActivity"
+            android:name=".configuration.activity.EditConfigurationActivity"
             android:label="@string/edit_configuration"
-            android:parentActivityName="com.eleonorvinicius.ace.configuration.activity.ListConfigurationActivity" >
+            android:parentActivityName=".configuration.activity.ListConfigurationActivity" >
 
             <!--
             intent-filter>
@@ -31,12 +39,12 @@
             -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eleonorvinicius.ace.configuration.activity.ListConfigurationActivity" />
+                android:value=".configuration.activity.ListConfigurationActivity" />
         </activity>
         <activity
-            android:name="com.eleonorvinicius.ace.configuration.activity.CreateConfigurationActivity"
+            android:name=".configuration.activity.CreateConfigurationActivity"
             android:label="@string/create_configuration"
-            android:parentActivityName="com.eleonorvinicius.ace.configuration.activity.ListConfigurationActivity" >
+            android:parentActivityName=".configuration.activity.ListConfigurationActivity" >
 
             <!--
             intent-filter>
@@ -46,27 +54,28 @@
             -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eleonorvinicius.ace.configuration.activity.ListConfigurationActivity" />
+                android:value=".configuration.activity.ListConfigurationActivity" />
         </activity>
 
         <!-- user -->
         <activity
-            android:name="com.eleonorvinicius.ace.user.activity.ListUserActivity"
+            android:name=".user.activity.ListUserActivity"
             android:label="@string/list_user" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
-            android:name="com.eleonorvinicius.ace.user.activity.EditUserActivity"
+            android:name=".user.activity.EditUserActivity"
             android:label="@string/edit_user"
-            android:parentActivityName="com.eleonorvinicius.ace.user.activity.ListUserActivity" >
+            android:parentActivityName=".user.activity.ListUserActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eleonorvinicius.ace.user.activity.ListUserActivity" />
+                android:value=".user.activity.ListUserActivity" />
         </activity>
-    </application>
 
+        <!-- receivers -->
+        <receiver android:name=".broadcast.receiver.BootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+    </application>
 </manifest>
