@@ -55,23 +55,21 @@ public class ListConfigurationActivity extends ListBaseActivity {
 
 		sharedPreferences = this.getSharedPreferences(COM_ELEONORVINICIUS_ACE_SETTINGS, MODE_PRIVATE);
 		editor = sharedPreferences.edit();
-		
-		//this.setSelectedIds(sharedPreferences.getStringSet("selectedIds", new HashSet<String>()));
 	}
 
 	@Override
 	public void removeAllImpl() {
-		ConfigurationData.getInstance().clear();
+		/*
+		 * FIXME corrigir
+		 */
+		//ConfigurationData.getInstance().clear();
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		Toast.makeText(this, getText(R.string.allremoved), Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void removeImpl() {
-		/*
-		 * FIXME corrigir
-		 */
-		//ConfigurationData.getInstance().removeAll(this.getSelectedIds());
+		ConfigurationData.getInstance().removeAllSelected();
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 		Toast.makeText(this, getText(R.string.removed), Toast.LENGTH_LONG).show();
 	}

@@ -31,12 +31,6 @@
             android:label="@string/edit_configuration"
             android:parentActivityName=".configuration.activity.ListConfigurationActivity" >
 
-            <!--
-            intent-filter>
-                <action android:name="EditConfigurationActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter
-            -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".configuration.activity.ListConfigurationActivity" />
@@ -46,12 +40,6 @@
             android:label="@string/create_configuration"
             android:parentActivityName=".configuration.activity.ListConfigurationActivity" >
 
-            <!--
-            intent-filter>
-                <action android:name="CreateConfigurationActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter
-            -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".configuration.activity.ListConfigurationActivity" />

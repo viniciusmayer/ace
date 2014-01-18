@@ -17,72 +17,49 @@ import com.eleonorvinicius.ace.R;
 
 public abstract class ListBaseActivity extends android.app.ListActivity implements BaseActivity {
 
-	//private List<Long> selectedIds;
+	private boolean extraNoConnectivity;
 	private MenuItem menuItem;
-	
-	BroadcastReceiver receiver = new BroadcastReceiver() {
+
+	private BroadcastReceiver receiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			boolean booleanExtra = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
-			menuItem.setEnabled(!booleanExtra);
+			extraNoConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
 		}
-	};
+	};;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
 		registerReceiver(receiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
 	}
-	
+
 	@Override
 	protected void onStop() {
 		super.onStop();
 		unregisterReceiver(receiver);
 	}
 
-	/*public ListBaseActivity() {
-		this.selectedIds = new ArrayList<Long>();
-	}*/
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.list_items, menu);
-		menuItem = menu.findItem(R.id.save);
+		return true;
+	}
+	
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		super.onPrepareOptionsMenu(menu);
+		((MenuItem) menu.findItem(R.id.save)).setEnabled(this.extraNoConnectivity);
 		return true;
 	}
 
 	public MenuItem getMenuItem() {
 		return menuItem;
 	}
-
-	/*public Set<String> getSelectedIdsAsStringSet() {
-		Set<String> selectedIdsAsListString = new HashSet<String>();
-		for (Long l : this.selectedIds) {
-			selectedIdsAsListString.add(l.toString());
-		}
-		return selectedIdsAsListString;
-	}
-
-	public List<Long> getSelectedIds() {
-		return selectedIds;
-	}
-
-	public void setSelectedIds(Set<String> selectedIds) {
-		for (String string : selectedIds) {
-			this.selectedIds.add(Long.valueOf(string));
-		}
-	}
-
-	public void check(View view) {
-		Long tag = (Long) view.getTag();
-		if (this.selectedIds.contains(tag)) {
-			this.selectedIds.remove(tag);
-			Toast.makeText(view.getContext(), R.string.unchecked, Toast.LENGTH_SHORT).show();
-		} else {
-			this.selectedIds.add(tag);
-			Toast.makeText(view.getContext(), R.string.checked, Toast.LENGTH_SHORT).show();
-		}
-	}*/
 
 	public abstract void edit(View view);
 
@@ -104,7 +81,8 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 		/*
 		 * FIXME corrigir
 		 */
-		//outState.putSerializable("selectedIds", new SelectedIdsDTO(this.selectedIds));
+		// outState.putSerializable("selectedIds", new
+		// SelectedIdsDTO(this.selectedIds));
 		super.onSaveInstanceState(outState);
 	}
 
@@ -114,9 +92,12 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 		/*
 		 * FIXME corrigir
 		 */
-		/*SelectedIdsDTO selectedIdsDTO = (SelectedIdsDTO) state.getSerializable("selectedIds");
-		this.selectedIds = selectedIdsDTO.getSelectedIds();
-		((BaseAdapter) getListAdapter()).notifyDataSetChanged();*/
+		/*
+		 * SelectedIdsDTO selectedIdsDTO = (SelectedIdsDTO)
+		 * state.getSerializable("selectedIds"); this.selectedIds =
+		 * selectedIdsDTO.getSelectedIds(); ((BaseAdapter)
+		 * getListAdapter()).notifyDataSetChanged();
+		 */
 	}
 
 	public void removeAll(MenuItem item) {

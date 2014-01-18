@@ -43,19 +43,36 @@ public abstract class Data<T extends Entity> {
 
 	public abstract void validate(T entidade) throws ACEException;
 
-	public void removeAll(List<Long> ids) {
-		for (Long l : ids) {
-			this.objects.remove(l);
-		}
-	}
-
 	public void removeAll(Long... ids) {
 		for (Long l : ids) {
 			this.objects.remove(l);
 		}
 	}
 
+	public void removeAll(List<Long> ids) {
+		for (Long l : ids) {
+			this.objects.remove(l);
+		}
+	}
+
+	public void removeAllSelected() {
+		for (T entity : this.getSelectedObjects()) {
+			this.objects.remove(entity.getId());
+		}
+	}
+
 	public void clear() {
 		this.objects.clear();
+	}
+	
+	private List<T> getSelectedObjects(){
+		List<T> selectedObjects = new ArrayList<T>();
+		for (Long l : this.objects.keySet()) {
+			T entity = this.objects.get(l);
+			if (entity.isChecked()){
+				selectedObjects.add(entity);
+			}
+		}
+		return selectedObjects;
 	}
 }

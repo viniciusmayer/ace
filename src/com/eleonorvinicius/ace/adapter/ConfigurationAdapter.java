@@ -65,6 +65,4 @@ public class ConfigurationAdapter extends BaseAdapter {
 		});
 		return linearLayout;
 	}
-	
-	
 }
