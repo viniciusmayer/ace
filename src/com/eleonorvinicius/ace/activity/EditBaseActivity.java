@@ -9,8 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.eleonorvinicius.ace.R;
+import com.google.analytics.tracking.android.EasyTracker;
 
-public abstract class EditBaseActivity extends Activity implements BaseActivity {
+public abstract class EditBaseActivity extends Activity implements iBaseActivity {
 
 	private Long selectedId;
 
@@ -26,6 +27,18 @@ public abstract class EditBaseActivity extends Activity implements BaseActivity 
 
 	public abstract void update(View view);
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance().activityStart(this);
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.edit_items, menu);

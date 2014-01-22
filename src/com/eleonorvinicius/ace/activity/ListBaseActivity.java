@@ -14,8 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.eleonorvinicius.ace.R;
+import com.google.analytics.tracking.android.EasyTracker;
 
-public abstract class ListBaseActivity extends android.app.ListActivity implements BaseActivity {
+public abstract class ListBaseActivity extends android.app.ListActivity implements iBaseActivity {
 
 	private boolean extraNoConnectivity;
 	private MenuItem menuItem;
@@ -25,7 +26,7 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 		public void onReceive(Context context, Intent intent) {
 			extraNoConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
 		}
-	};;
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +37,16 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 	protected void onStart() {
 		super.onStart();
 		registerReceiver(receiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+
+		EasyTracker.getInstance().activityStart(this);
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
 		unregisterReceiver(receiver);
+
+		EasyTracker.getInstance().activityStop(this);
 	}
 
 	@Override
@@ -49,7 +54,7 @@ public abstract class ListBaseActivity extends android.app.ListActivity implemen
 		getMenuInflater().inflate(R.menu.list_items, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);

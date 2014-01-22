@@ -1,6 +1,6 @@
 package com.eleonorvinicius.ace.activity;
 
-public interface BaseActivity {
+public interface iBaseActivity {
 
 	public String COM_ELEONORVINICIUS_ACE_SETTINGS = "com.eleonorvinicius.ace.SETTINGS";
 

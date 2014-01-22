@@ -11,6 +11,7 @@ import com.eleonorvinicius.ace.R;
 import com.eleonorvinicius.ace.activity.EditBaseActivity;
 import com.eleonorvinicius.ace.data.impl.ConfigurationData;
 import com.eleonorvinicius.ace.entity.Configuration;
+import com.google.analytics.tracking.android.EasyTracker;
 
 public class EditConfigurationActivity extends EditBaseActivity {
 
@@ -26,6 +27,8 @@ public class EditConfigurationActivity extends EditBaseActivity {
 
 	@Override
 	public void update(View view) {
+		EasyTracker.getTracker().sendEvent("Interface", "Edit configuration", "Update", 100l);
+		
 		EditText keyEditText = (EditText) findViewById(R.id.editKeyInput);
 		EditText valueEditText = (EditText) findViewById(R.id.editValueInput);
 
